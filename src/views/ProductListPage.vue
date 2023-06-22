@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="productPage">
     <h1>Product List</h1>
     <div class="productList">
       <div v-for="product in allProducts">
@@ -33,6 +33,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.productPage {
+  width: 100% !important;
+}
 .productList {
   display: flex;
   justify-content: space-between;

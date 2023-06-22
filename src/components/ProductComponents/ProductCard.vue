@@ -32,7 +32,7 @@ function viewProduct() {
   height: min-content;
   padding: 1%;
   border-radius: 0.4rem;
-  height: 470px;
+  height: 460px;
 }
 .productCard img {
   width: 100% !important;

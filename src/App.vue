@@ -9,6 +9,10 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style>
+#app {
+  width: 100%;
+  display: flex;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -19,7 +23,7 @@ header {
 .primaryBtn {
   display: flex;
   justify-content: center;
-  margin: 10% auto;
+  margin: 5% auto;
   background-color: cornflowerblue;
   color: white;
   padding: 2% 5%;
@@ -82,8 +86,8 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-  button {
-    cursor: pointer;
-  }
+}
+button {
+  cursor: pointer;
 }
 </style>

@@ -9,8 +9,10 @@
         <th>Sub Total</th>
       </tr>
       <tr v-for="item in cartData">
-        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
         <td>{{ item.quantity }}</td>
+        <td>{{ item.price * item.quantity }}</td>
       </tr>
     </table>
     <h3>Total:Rs.0</h3>
@@ -34,6 +36,10 @@ td {
   border: 2px solid cornflowerblue;
   border-collapse: collapse;
   border-radius: 10px;
+  padding: 2%;
+}
+table {
+  width: 100%;
 }
 
 .topHeading {
@@ -45,5 +51,6 @@ td {
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 </style>
