@@ -26,7 +26,7 @@
 <script setup>
 import { useStore } from 'vuex'
 const store = useStore()
-const cartData = store.state.cart
+const cartData = store.getters.getCartProducts
 </script>
 
 <style scoped>

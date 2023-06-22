@@ -82,5 +82,13 @@ export default createStore({
       commit('addProduct', id)
     }
   },
+  getters: {
+    getProducts(state: state) {
+      return state.products
+    },
+    getCartProducts(state: state) {
+      return state.cart
+    }
+  },
   modules: {}
 })

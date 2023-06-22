@@ -25,10 +25,10 @@ import { useStore } from 'vuex'
 import ProductCard from '@/components/ProductComponents/ProductCard.vue'
 const count = ref(0)
 const store = useStore()
-const allProducts = store.state.products
+const allProducts = store.getters.getProducts
 
 onMounted(() => {
-  console.log('st', store.state.products)
+  console.log('st', store.getters.getProducts)
 })
 </script>
 
