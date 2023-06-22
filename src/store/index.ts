@@ -45,7 +45,7 @@ export default createStore({
         price: 249.99,
         img: '/src/assets/images/mobile.jpg',
         attributes:
-          'Compatible OS: iOS, Android, Display Type: OLED, Water Resistance: 50 meters, Sensors: Heart rate, GPS, Battery Life: Up to 7 days'
+          'Compatible OS: iOS, Android, Display Type: OLED, Water Resistance: 50 meters, Sensors: Heart rate, GPS, Battery Life: Up to 7 d'
       }
     ]
   },

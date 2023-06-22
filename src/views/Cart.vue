@@ -1,22 +1,24 @@
 <template>
-  <h2>Your Cart</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Sub Total</th>
-    </tr>
-    <tr v-for="item in cartData">
-      <td>{{ item.id }}</td>
-      <td>{{ item.quantity }}</td>
-    </tr>
-  </table>
-  <h1>Total:Rs.0</h1>
-  <button>Checkout</button>
-  <router-link :to="{ path: `/` }">
-    <button>Back</button>
-  </router-link>
+  <div class="container">
+    <h2 class="topHeading">Your Cart</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+      </tr>
+      <tr v-for="item in cartData">
+        <td>{{ item.id }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    </table>
+    <h3>Total:Rs.0</h3>
+    <button class="primaryBtn">Checkout</button>
+    <router-link :to="{ path: `/` }">
+      <button class="primaryBtn">Back</button>
+    </router-link>
+  </div>
 </template>
 
 <script setup>
@@ -29,7 +31,19 @@ const cartData = store.state.cart
 table,
 th,
 td {
-  border: 1px solid black;
+  border: 2px solid cornflowerblue;
   border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.topHeading {
+  font-size: xx-large;
+  color: cornflowerblue;
+  text-align: center;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  flex-direction: column;
 }
 </style>

@@ -8,9 +8,13 @@
           :name="product.name"
           :price="product.price"
           :attributes="product.attributes"
+          :img="product.img"
         />
       </div>
     </div>
+    <router-link :to="{ path: `/cart` }">
+      <button class="primaryBtn">View Cart</button>
+    </router-link>
   </div>
 </template>
 
@@ -18,7 +22,7 @@
 import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
-import ProductCard from '../components/ProductComponents/ProductCard.vue'
+import ProductCard from '@/components/ProductComponents/ProductCard.vue'
 const count = ref(0)
 const store = useStore()
 const allProducts = store.state.products
@@ -31,7 +35,7 @@ onMounted(() => {
 <style scoped>
 .productList {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
   height: min-content;
