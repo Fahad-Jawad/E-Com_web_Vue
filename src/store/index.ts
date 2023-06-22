@@ -70,6 +70,15 @@ export default createStore({
       } else {
         state.cart.push({ ...state.currentProduct, quantity: 1 })
       }
+    },
+    manageQuantity(state: state, id: string, type: string) {
+      let index: number = -1
+      index = state.cart.findIndex((item: cartItem) => item.id == id)
+      const { quantity } = <cartItem>state.cart[index]
+      if (type == 'increase') state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
+      else {
+        if (quantity > 1) state.cart[index] = { ...state.cart[index], quantity: quantity - 1 }
+      }
     }
   },
   actions: {
@@ -78,8 +87,13 @@ export default createStore({
       commit('getSingleProduct', id)
     },
     addToCart({ commit }: any, id: number) {
-      console.log('dd', id)
       commit('addProduct', id)
+    },
+    incrementQunatity({ commit }: any, id: string) {
+      commit('manageQuantity', id, 'increase')
+    },
+    decrementQunatity({ commit }: any, id: string) {
+      commit('manageQuantity', id, 'decrease')
     }
   },
   getters: {
