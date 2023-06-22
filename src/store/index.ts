@@ -10,6 +10,10 @@ type Product = {
 
 interface cartItem {
   id: string
+  name: string
+  price: number
+  img: string
+  attributes: string
   quantity: number
 }
 
@@ -61,10 +65,10 @@ export default createStore({
           const { quantity } = <cartItem>state.cart[index]
           state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
         } else {
-          state.cart.push({ id: id, quantity: 1 })
+          state.cart.push({ ...state.currentProduct, quantity: 1 })
         }
       } else {
-        state.cart.push({ id: id, quantity: 1 })
+        state.cart.push({ ...state.currentProduct, quantity: 1 })
       }
     }
   },
