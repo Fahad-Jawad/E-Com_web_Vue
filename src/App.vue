@@ -8,12 +8,27 @@ import { RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+#app {
+  width: 100%;
+  display: flex;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
   padding: 0 !important;
   display: none !important;
+}
+
+.primaryBtn {
+  display: flex;
+  justify-content: center;
+  margin: 5% auto;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 2% 5%;
+  border-color: transparent;
+  border-radius: 0.4rem;
 }
 
 .logo {
@@ -71,5 +86,8 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+button {
+  cursor: pointer;
 }
 </style>

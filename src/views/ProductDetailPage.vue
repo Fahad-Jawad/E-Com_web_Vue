@@ -4,7 +4,10 @@
     <h1>{{ store.state.currentProduct?.name }}</h1>
     <h2>${{ store.state.currentProduct?.price }}</h2>
     <p>{{ store.state.currentProduct?.attributes }}</p>
-    <button @click="addToCart()">Add to Cart</button>
+    <button class="primaryBtn" @click="addToCart()">Add to Cart</button>
+    <router-link :to="{ path: `/` }">
+      <button class="primaryBtn">Back</button>
+    </router-link>
   </div>
 </template>
 

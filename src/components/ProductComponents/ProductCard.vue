@@ -1,6 +1,6 @@
 <template>
   <div class="productCard">
-    <img src="../../assets/images/mobile.jpg" />
+    <img :src="img" />
     <h2>{{ name }}</h2>
     <h4>Price:${{ price }}</h4>
     <h3 class="attribute">Attributes</h3>
@@ -13,11 +13,11 @@
 
 <script setup lang="ts">
 defineProps<{
-  id: Number
-  name: String
-  price: Number
-  img: String
-  attributes: String
+  id: number
+  name: string
+  price: number
+  img: string
+  attributes: string
 }>()
 function viewProduct() {
   $router.push(`/product/${this.id}`)
@@ -32,11 +32,11 @@ function viewProduct() {
   height: min-content;
   padding: 1%;
   border-radius: 0.4rem;
-  height: 100%;
+  height: 460px;
 }
 .productCard img {
   width: 100% !important;
-  height: 70%;
+  height: 30%;
 }
 .productCard .attribute {
   background-color: cornflowerblue;

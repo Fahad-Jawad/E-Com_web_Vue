@@ -7,9 +7,16 @@ type Product = {
   img: string
   attributes: string
 }
-
+type payload = {
+  id: string
+  type: string
+}
 interface cartItem {
   id: string
+  name: string
+  price: number
+  img: string
+  attributes: string
   quantity: number
 }
 
@@ -45,7 +52,7 @@ export default createStore({
         price: 249.99,
         img: '/src/assets/images/mobile.jpg',
         attributes:
-          'Compatible OS: iOS, Android, Display Type: OLED, Water Resistance: 50 meters, Sensors: Heart rate, GPS, Battery Life: Up to 7 days'
+          'Compatible OS: iOS, Android, Display Type: OLED, Water Resistance: 50 meters, Sensors: Heart rate, GPS, Battery Life: Up to 7 d'
       }
     ]
   },
@@ -61,10 +68,22 @@ export default createStore({
           const { quantity } = <cartItem>state.cart[index]
           state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
         } else {
-          state.cart.push({ id: id, quantity: 1 })
+          state.cart.push({ ...state.currentProduct, quantity: 1 })
         }
       } else {
-        state.cart.push({ id: id, quantity: 1 })
+        state.cart.push({ ...state.currentProduct, quantity: 1 })
+      }
+    },
+    manageQuantity(state: state, payload: payload) {
+      let index: number = -1
+      index = state.cart.findIndex((item: cartItem) => item.id == payload.id)
+      const { quantity } = <cartItem>state.cart[index]
+      console.log('ty', payload.type)
+      if (payload.type == 'increase') {
+        state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
+        console.log('cart', state.cart)
+      } else {
+        if (quantity > 1) state.cart[index] = { ...state.cart[index], quantity: quantity - 1 }
       }
     }
   },
@@ -74,8 +93,21 @@ export default createStore({
       commit('getSingleProduct', id)
     },
     addToCart({ commit }: any, id: number) {
-      console.log('dd', id)
       commit('addProduct', id)
+    },
+    incrementQunatity({ commit }: any, id: string) {
+      commit('manageQuantity', { id: id, type: 'increase' })
+    },
+    decrementQunatity({ commit }: any, id: string) {
+      commit('manageQuantity', { id: id, type: 'decrease' })
+    }
+  },
+  getters: {
+    getProducts(state: state) {
+      return state.products
+    },
+    getCartProducts(state: state) {
+      return state.cart
     }
   },
   modules: {}
