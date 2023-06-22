@@ -7,7 +7,10 @@ type Product = {
   img: string
   attributes: string
 }
-
+type payload = {
+  id: string
+  type: string
+}
 interface cartItem {
   id: string
   name: string
@@ -71,12 +74,15 @@ export default createStore({
         state.cart.push({ ...state.currentProduct, quantity: 1 })
       }
     },
-    manageQuantity(state: state, id: string, type: string) {
+    manageQuantity(state: state, payload: payload) {
       let index: number = -1
-      index = state.cart.findIndex((item: cartItem) => item.id == id)
+      index = state.cart.findIndex((item: cartItem) => item.id == payload.id)
       const { quantity } = <cartItem>state.cart[index]
-      if (type == 'increase') state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
-      else {
+      console.log('ty', payload.type)
+      if (payload.type == 'increase') {
+        state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
+        console.log('cart', state.cart)
+      } else {
         if (quantity > 1) state.cart[index] = { ...state.cart[index], quantity: quantity - 1 }
       }
     }
@@ -90,10 +96,10 @@ export default createStore({
       commit('addProduct', id)
     },
     incrementQunatity({ commit }: any, id: string) {
-      commit('manageQuantity', id, 'increase')
+      commit('manageQuantity', { id: id, type: 'increase' })
     },
     decrementQunatity({ commit }: any, id: string) {
-      commit('manageQuantity', id, 'decrease')
+      commit('manageQuantity', { id: id, type: 'decrease' })
     }
   },
   getters: {

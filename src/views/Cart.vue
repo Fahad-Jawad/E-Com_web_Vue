@@ -11,8 +11,14 @@
       <tr v-for="item in cartData">
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.price * item.quantity }}</td>
+        <td>
+          <div class="quantity">
+            <button class="primaryBtn" @click="decrese(item.id)">-</button>
+            {{ item.quantity }}
+            <button class="primaryBtn" @click="increse(item.id)">+</button>
+          </div>
+        </td>
+        <td>{{ Math.round(item.price * item.quantity) }}</td>
       </tr>
     </table>
     <h3>Total:Rs.0</h3>
@@ -27,6 +33,12 @@
 import { useStore } from 'vuex'
 const store = useStore()
 const cartData = store.getters.getCartProducts
+function increse(id) {
+  store.dispatch('incrementQunatity', id)
+}
+function decrese(id) {
+  store.dispatch('decrementQunatity', id)
+}
 </script>
 
 <style scoped>
@@ -40,6 +52,10 @@ td {
 }
 table {
   width: 100%;
+}
+.quantity {
+  display: flex;
+  align-items: center;
 }
 
 .topHeading {
