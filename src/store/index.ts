@@ -80,7 +80,6 @@ export default createStore({
       let index: number = -1
       index = state.cart.findIndex((item: cartItem) => item.id == payload.id)
       const { quantity } = <cartItem>state.cart[index]
-      console.log('ty', payload.type)
       if (payload.type == 'increase') {
         state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
         console.log('cart', state.cart)
@@ -121,7 +120,6 @@ export default createStore({
       return state.cart
     },
     getTotal(state: state) {
-      console.log('state total', state.total)
       return state.total
     }
   },

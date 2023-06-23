@@ -6,7 +6,7 @@
     <h3 class="attribute">Attributes</h3>
     <p>{{ attributes }}</p>
     <router-link :to="{ path: `/product/${id}` }">
-      <button class="cartBtn" @click="viewProduct()">View</button>
+      <button class="cartBtn">View</button>
     </router-link>
   </div>
 </template>
@@ -19,9 +19,6 @@ defineProps<{
   img: string
   attributes: string
 }>()
-function viewProduct() {
-  $router.push(`/product/${this.id}`)
-}
 </script>
 
 <style scoped>
