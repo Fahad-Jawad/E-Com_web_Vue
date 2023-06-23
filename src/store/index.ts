@@ -24,9 +24,11 @@ type state = {
   currentProduct: object
   cart: object[]
   products: Product[]
+  total: number
 }
 export default createStore({
   state: {
+    total: 0,
     currentProduct: {},
     cart: [],
     products: [
@@ -78,13 +80,18 @@ export default createStore({
       let index: number = -1
       index = state.cart.findIndex((item: cartItem) => item.id == payload.id)
       const { quantity } = <cartItem>state.cart[index]
-      console.log('ty', payload.type)
       if (payload.type == 'increase') {
         state.cart[index] = { ...state.cart[index], quantity: quantity + 1 }
         console.log('cart', state.cart)
       } else {
         if (quantity > 1) state.cart[index] = { ...state.cart[index], quantity: quantity - 1 }
       }
+    },
+    claculateTotal(state: state) {
+      state.total = 0
+      state.cart.map((product) => {
+        state.total += product.price * product.quantity
+      })
     }
   },
   actions: {
@@ -94,12 +101,15 @@ export default createStore({
     },
     addToCart({ commit }: any, id: number) {
       commit('addProduct', id)
+      commit('claculateTotal')
     },
     incrementQunatity({ commit }: any, id: string) {
       commit('manageQuantity', { id: id, type: 'increase' })
+      commit('claculateTotal')
     },
     decrementQunatity({ commit }: any, id: string) {
       commit('manageQuantity', { id: id, type: 'decrease' })
+      commit('claculateTotal')
     }
   },
   getters: {
@@ -108,6 +118,9 @@ export default createStore({
     },
     getCartProducts(state: state) {
       return state.cart
+    },
+    getTotal(state: state) {
+      return state.total
     }
   },
   modules: {}

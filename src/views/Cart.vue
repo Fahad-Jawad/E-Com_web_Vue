@@ -21,7 +21,7 @@
         <td>{{ Math.round(item.price * item.quantity) }}</td>
       </tr>
     </table>
-    <h3>Total:Rs.0</h3>
+    <h3>Total:Rs.{{ Math.round(store.getters.getTotal) }}</h3>
     <button class="primaryBtn">Checkout</button>
     <router-link :to="{ path: `/` }">
       <button class="primaryBtn">Back</button>
@@ -31,8 +31,11 @@
 
 <script setup>
 import { useStore } from 'vuex'
+import { onMounted } from 'vue'
+
 const store = useStore()
 const cartData = store.getters.getCartProducts
+
 function increse(id) {
   store.dispatch('incrementQunatity', id)
 }
